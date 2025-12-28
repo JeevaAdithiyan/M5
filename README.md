@@ -39,8 +39,49 @@
 ### Step 12: 
   Stop
 # Program:
+#include <stdio.h>
+
+// Function to swap using call by value
+void swapByValue(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
+    printf("Inside swapByValue: a = %d, b = %d\n", a, b);
+}
+
+// Function to swap using call by reference
+void swapByReference(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x, y;
+
+    printf("Enter two integers: ");
+    scanf("%d %d", &x, &y);
+
+    printf("\nBefore swap:\n");
+    printf("x = %d, y = %d\n", x, y);
+
+    // Call by value
+    swapByValue(x, y);
+    printf("After swapByValue in main:\n");
+    printf("x = %d, y = %d\n", x, y);  // Values remain unchanged
+
+    // Call by reference
+    swapByReference(&x, &y);
+    printf("After swapByReference in main:\n");
+    printf("x = %d, y = %d\n", x, y);  // Values are swapped
+
+    return 0;
+}
+
 # Output:
-# Result: 
+<img width="1920" height="1080" alt="Screenshot 2025-12-28 110208" src="https://github.com/user-attachments/assets/459b9c4d-b4c2-4531-a1c4-ff6e7a1cc6a0" />
+# Result
+: 
   Thus, the program was implemented and executed successfully, and the required output was obtained.
 
 
@@ -77,7 +118,41 @@
 ### Step 10:
   Stop
 # Program:
+#include <stdio.h>
+
+// Recursive function to find the nth Fibonacci number
+int fibonacci(int n) {
+    if (n == 0) 
+        return 0;
+    else if (n == 1) 
+        return 1;
+    else
+        return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    int n, i;
+
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Please enter a positive integer greater than 0.\n");
+        return 1;
+    }
+
+    printf("First %d terms of the Fibonacci series:\n", n);
+    for (i = 0; i < n; i++) {
+        printf("%d ", fibonacci(i));
+    }
+
+    printf("\n");
+    return 0;
+}
+
 # Output:
+<img width="1920" height="1080" alt="Screenshot 2025-12-28 110614" src="https://github.com/user-attachments/assets/e0f22770-1090-4777-9d1f-db45fcf35251" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -119,7 +194,50 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 12:
   Stop
 # Program:
+#include <stdio.h>
+
+// Recursive function to print numbers by 2
+void printSequence(int current, int upper) {
+    if (current > upper) {
+        return;  // Base case: stop recursion
+    }
+
+    printf("%d ", current);
+
+    // Recursive call increasing by 2
+    printSequence(current + 2, upper);
+}
+
+int main() {
+    int lower, upper;
+
+    printf("Enter the lower limit: ");
+    scanf("%d", &lower);
+
+    printf("Enter the upper limit: ");
+    scanf("%d", &upper);
+
+    if (lower > upper) {
+        printf("Lower limit should be less than or equal to upper limit.\n");
+        return 1;
+    }
+
+    // Adjust lower limit to match even/odd sequence
+    if (lower % 2 != upper % 2) {
+        printf("Lower and upper limit should be of the same parity (both even or both odd).\n");
+        return 1;
+    }
+
+    printf("The sequence is:\n");
+    printSequence(lower, upper);
+
+    printf("\n");
+    return 0;
+}
+
 # Output:
+<img width="1920" height="1080" alt="Screenshot 2025-12-28 110740" src="https://github.com/user-attachments/assets/6476b6dc-ac67-47c6-b038-8b3fdfa0226a" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -161,7 +279,50 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11:
   Stop
 # Program:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, i, sum = 0;
+    int *arr;
+
+    printf("Enter the number of integers: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Number of integers must be positive.\n");
+        return 1;
+    }
+
+    // Allocate memory using calloc
+    arr = (int *)calloc(n, sizeof(int));
+    if (arr == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    // Accept integers from the user
+    printf("Enter %d integers:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Compute sum
+    for (i = 0; i < n; i++) {
+        sum += arr[i];
+    }
+
+    printf("The sum of the entered integers is: %d\n", sum);
+
+    // Free allocated memory
+    free(arr);
+
+    return 0;
+}
+
 # Output:
+<img width="1920" height="1080" alt="Screenshot 2025-12-28 110858" src="https://github.com/user-attachments/assets/3d36d3f5-642a-4899-a4be-cb7c7186d116" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -197,6 +358,44 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10:
   Stop
 # Program:
+#include <stdio.h>
+
+// Function to display array elements
+void displayArray(int arr[], int size) {
+    printf("Array elements are:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of integers: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Number of integers must be positive.\n");
+        return 1;
+    }
+
+    int arr[n]; // Array declaration
+
+    // Input elements from user
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Call user-defined function to display array
+    displayArray(arr, n);
+
+    return 0;
+}
+
 # Output:
+<img width="1920" height="1080" alt="m5 5" src="https://github.com/user-attachments/assets/ccf17d4d-823a-404d-9911-4b2cfbc1b4c2" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
